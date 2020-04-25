@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
+<div class="card m-3 p-5">
+  <h1>Image Into Image</h1>
+  <p>
+    Use this form to decrypt a hidden image.
+  </p>
+</div>
+<div class="line"></div>
+
+<div class="card m-3 p-5">
+  {% if messages %}
+  <ul class="alert alert-danger" role="alert">
+  {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} list-unstyled"{% endif %}><i class="fas fa-skull"></i> {{ message|safe }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+  <form
+    action="/imageToImage/input/decrypt/"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %} {{ decryptForm|crispy }}
+    <input
+      name="decrypt"
+      class="btn btn-primary"
+      type="submit"
+      value="Decrypt!"
+    />
+  </form>
+</div>
+{% endblock %}

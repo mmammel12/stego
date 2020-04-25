@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
+<div class="card m-3 p-5">
+  <h1>Image Into Image</h1>
+  <p>
+    Use this form to hide an image inside of another image, using your choice of least
+    significant bits.
+  </p>
+</div>
+<div class="line"></div>
+
+<div class="card m-3 p-3">
+  <div class="card-body">
+    {% if messages %}
+    <ul class="alert alert-danger" role="alert">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }} list-unstyled"{% endif %}><i class="fas fa-skull"></i> {{ message|safe }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+    <form
+      action="/imageToImage/input/encrypt/"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %} {{ encryptForm|crispy }}
+      <input
+        name="encrypt"
+        class="btn btn-primary"
+        type="submit"
+        value="Encrypt!"
+      />
+    </form>
+  </div>
+</div>
+
+{% endblock %}

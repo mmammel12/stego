@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "builds": [{
+        "src": "stego/wsgi.py",
+        "use": "@ardnt/now-python-wsgi",
+        "config": { "maxLambdaSize": "15mb" }
+    }],
+    "routes": [{
+        "src": "/(.*)",
+        "dest": "stego/wsgi.py"
+    }]
+}

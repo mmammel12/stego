@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card m-3 p-5">
+  <h1>Text Into Image</h1>
+  <p>The decrypted hidden message will display below.</p>
+</div>
+<div class="line"></div>
+<class class="card m-3 p-5">
+  
+  {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+</class>
+
+{% endblock %}
